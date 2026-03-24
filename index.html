@@ -568,6 +568,61 @@ background:#16a34a;
     border-radius: 8px;
 }
 
+/* MOBILE FIRST */
+@media (max-width: 768px){
+
+    .container{
+        padding: 10px;
+    }
+
+    .card{
+        margin-bottom: 20px;
+        border-radius: 14px;
+        padding: 12px;
+    }
+
+    .card img{
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .card h3{
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .price{
+        font-size: 18px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-bottom: 10px;
+    }
+
+    .card button{
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 10px;
+        background: #1e88e5;
+        color: white;
+        border: none;
+    }
+
+    .search-bar{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #search{
+        width: 100%;
+    }
+
+    #sort{
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 
@@ -857,11 +912,19 @@ return Math.random() > 0.5
 : ""
 })()}
 
+<div style="display:flex; gap:8px; flex-direction:column;">
+
 <button class="buy-btn"
-onclick="agregarCarrito('${p.name}','${p.price}', this)"
-data-text="🔥 Comprar ahora">
-🔥 Comprar ahora
+onclick="comprarWhatsApp('${p.name}', '${p.price}')">
+💬 Comprar por WhatsApp
 </button>
+
+<button class="buy-btn"
+onclick="agregarCarrito('${p.name}', '${p.price}', this)">
+🛒 Agregar al carrito
+</button>
+
+</div>
 
 
 </div>
@@ -1111,7 +1174,22 @@ toast.classList.remove("show")
 
 }
 
+function comprarWhatsApp(nombre, precio) {
 
+    const numero = "5493401415127"; // tu número
+
+    const mensaje = `Hola! 👋
+Quiero comprar este producto:
+
+🛒 ${nombre}
+💲 ${precio}
+
+¿Tenés stock?`;
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+}
 
 </script>
 
