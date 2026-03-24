@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Productos</title>
+
+<style>
+
+body{
+background:#eef2f7;
+}
+
+/* HEADER */
+
+header{
+background:linear-gradient(135deg,#1f2937,#111827);
+color:white;
+padding:22px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+margin-top:45px;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* BUSCADOR */
+
+.search-bar{
+display:flex;
+gap:12px;
+justify-content:center;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+#search{
+width:60%;
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+#sort{
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+/* CATEGORIAS */
+
+.categorias{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+margin-bottom:25px;
+}
+
+.categorias button{
+background:#e5e7eb;
+border:none;
+padding:8px 18px;
+border-radius:25px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.categorias button.active{
+background:#2563eb;
+color:white;
+}
+
+/* GRID PRODUCTOS */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:20px;
+}
+
+/* TARJETA */
+
+/*.barra-confianza{
+background:white;
+border-radius:12px;
+padding:18px;
+text-align:center;
+box-shadow:0 6px 15px rgba(0,0,0,0.08);
+transition:0.2s;
+cursor:pointer;
+}*/
+
+.card{
+background:white;
+border-radius:12px;
+padding:18px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+.card img{
+width:100%;
+height:220px;
+object-fit:contain;
+margin-bottom:10px;
+}
+
+.card h4{
+font-size:15px;
+margin:10px 0;
+min-height:40px;
+}
+
+/* PRECIO */
+
+.price{
+color:#16a34a;
+font-weight:bold;
+font-size:18px;
+margin:10px 0;
+}
+
+/* BOTONES */
+
+.buy-btn{
+background: linear-gradient(135deg,#2563eb,#1d4ed8);
+color:white;
+border:none;
+padding:10px;
+border-radius:8px;
+cursor:pointer;
+width:100%;
+font-weight:bold;
+transition:0.2s;
+}
+
+.buy-btn:hover{
+transform:scale(1.03);
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+.buy-now{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+margin-top:6px;
+width:100%;
+}
+
+/* CARRITO */
+
+.cart-button{
+position:fixed;
+right:20px;
+bottom:90px;
+background: linear-gradient(135deg,#ef4444,#dc2626);
+color:white;
+padding:15px 18px;
+border-radius:40px;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+transition:0.2s;
+}
+
+.cart-button:hover{
+transform:scale(1.1);
+}
+
+.cart-button span{
+background:#facc15;
+color:black;
+padding:4px 9px;
+border-radius:12px;
+margin-left:6px;
+font-weight:bold;
+}
+
+.cart-bounce {
+transform: scale(1.4);
+}
+
+
+#cartPanel{
+position:fixed;
+top:0;
+right:-400px;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
+overflow:auto;
+}
+
+#cartPanel.open{
+right:0;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.btn-whatsapp{
+background:#25D366;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-clear{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}
+
+.btn-close{
+background:#e5e7eb;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}  
+
+/* BANNER ENVIO */
+
+.envio-banner{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#16a34a;
+color:white;
+text-align:center;
+padding:10px;
+font-weight:bold;
+z-index:9999;
+}
+
+/* PAGOS */
+
+/* ---------- BLOQUE PAGOS Y ENVÍOS ---------- */
+
+.pagos{
+
+background:linear-gradient(180deg,#ffffff,#f9fafb);
+
+padding:30px;
+
+margin:30px auto;
+
+max-width:1200px;
+
+border-radius:14px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
+text-align:center;
+
+border:1px solid #e5e7eb;
+
+}
+
+/* TITULOS */
+
+.pagos h3{
+
+font-size:18px;
+
+color:#111827;
+
+margin-bottom:15px;
+
+font-weight:700;
+
+}
+
+/* SEPARADOR */
+
+.pagos hr{
+
+border:none;
+
+border-top:1px solid #e5e7eb;
+
+margin:25px 0;
+
+}
+
+/* CONTENEDORES */
+
+.pagos-logos,
+.envios-logos{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+margin-top:10px;
+
+}
+
+/* ICONOS */
+
+.pagos img,
+.envios-logos img{
+
+height:40px;
+
+object-fit:contain;
+
+padding:6px;
+
+background:white;
+
+border-radius:8px;
+
+border:1px solid #e5e7eb;
+
+box-shadow:0 3px 8px rgba(0,0,0,0.05);
+
+transition:0.25s;
+
+}
+
+/* HOVER ICONOS */
+
+.pagos img:hover,
+.envios-logos img:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 6px 16px rgba(0,0,0,0.12);
+
+}
+
+/* TEXTOS */
+
+.pagos span,
+.envios-logos span{
+
+font-size:14px;
+
+color:#374151;
+
+font-weight:500;
+
+margin-right:10px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.pagos{
+
+padding:20px;
+
+}
+
+.pagos-logos,
+.envios-logos{
+
+gap:15px;
+
+}
+
+.pagos img,
+.envios-logos img{
+
+height:34px;
+
+}
+
+}
+
+/* BARRA DE CONFIANZA */
+
+.barra-confianza{
+
+background:white;
+
+border-top:1px solid #e5e7eb;
+border-bottom:1px solid #e5e7eb;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+gap:40px;
+
+padding:14px 10px;
+
+flex-wrap:wrap;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+
+}
+
+/* ITEMS */
+
+.confianza-item{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+font-weight:500;
+
+color:#374151;
+
+}
+
+/* ICONOS */
+
+.confianza-item span{
+
+font-size:18px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.barra-confianza{
+
+gap:18px;
+
+padding:12px 6px;
+
+}
+
+.confianza-item{
+
+font-size:13px;
+
+}
+
+.confianza-item span{
+
+font-size:16px;
+
+}
+
+} 
+
+@keyframes bounceCart {
+0% { transform: scale(1); }
+30% { transform: scale(1.3); }
+60% { transform: scale(0.9); }
+100% { transform: scale(1); }
+}
+
+.cart-animate {
+animation: bounceCart 0.4s ease;
+}
+
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:#111827;
+color:white;
+padding:14px 22px;
+border-radius:10px;
+font-size:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+opacity:0;
+transition:all 0.4s ease;
+z-index:9999;
+}
+
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+color:white;
+z-index:2;
+}
+
+.badge-oferta{
+background:#ef4444;
+}
+
+.badge-top{
+background:#2563eb;
+}
+
+.badge-nuevo{
+background:#16a34a;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="envio-banner">
+🚚 Envíos a todo el país por solo <b>$8.000</b> — 🎁 Envío GRATIS en compras superiores a <b>$40.000</b>
+</div>
+
+<header>
+🔥 OFERTAS DIRECTAS DE FÁBRICA  
+<br>
+🚚 Envíos a todo el país  
+<br>
+💬 Comprá fácil por WhatsApp
+</header>
+
+<div class="barra-confianza">
+
+<div class="confianza-item">
+<span>🚚</span>
+<p>Envíos a todo el país</p>
+</div>
+
+<div class="confianza-item">
+<span>💳</span>
+<p>Tarjetas de crédito</p>
+</div>
+
+<div class="confianza-item">
+<span>🔒</span>
+<p>Compra segura</p>
+</div>
+
+<div class="confianza-item">
+<span>📦</span>
+<p>Seguimiento del envío</p>
+</div>
+
+<div class="confianza-item">
+<span>✔</span>
+<p>Garantía de producto</p>
+</div>
+
+</div>  
+
+<div class="pagos">
+
+<h3>💳 Medios de pago</h3>
+
+<div class="pagos-logos">
+
+<img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
+<img src="https://cdn-icons-png.flaticon.com/512/196/196561.png" alt="Mastercard">
+
+<span>Tarjetas de crédito</span>
+
+<span>1 y 3 cuotas sin interés</span>
+
+<img src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png" alt="Transferencia">
+
+<span>Transferencia bancaria</span>
+
+</div>
+
+<hr>
+
+<h3>📦 Medios de envío</h3>
+
+<p style="margin-top:10px;font-size:15px;font-weight:bold;color:#111827;">
+📦 Recibí tu compra rápido y seguro en cualquier parte del país
+</p>
+
+<p style="margin-top:15px;font-size:14px;color:#374151;">
+✔ Despachamos en 24hs  
+✔ Seguimiento del envío incluido  
+✔ Atención personalizada por WhatsApp
+</p>
+
+<div class="envios-logos">
+
+<div>
+<img src="img/envios/correo-argentino.webp">
+<p>Correo Argentino</p>
+</div>
+
+<div>
+<img src="img/envios/correo-andreani.webp">
+<p>Andreani</p>
+</div>
+
+<div>
+<img src="img/envios/correo-oca.webp">
+<p>OCA</p>
+</div>
+
+<div>
+<img src="img/envios/via-cargo.webp">
+<p>Via Cargo</p>
+</div>
+
+<div>
+<img src="img/envios/credifin-express.webp">
+<p>Credifin Express</p>
+</div>
+
+</div>
+</div>
+
+<div class="container">
+
+<div style="text-align:center;margin:20px;font-size:18px;font-weight:bold;">
+💬 Consultanos por WhatsApp y te respondemos al instante
+</div>
+
+<div class="search-bar">
+<input id="search" placeholder="Buscar productos...">
+
+<select id="sort">
+<option value="">Ordenar por</option>
+<option value="az">A-Z</option>
+<option value="za">Z-A</option>
+<option value="menor">Precio menor</option>
+<option value="mayor">Precio mayor</option>
+</select>
+</div>
+
+<div id="categorias" class="categorias"></div>
+<div id="productos" class="grid"></div>
+
+</div>
+
+<div class="cart-button" onclick="toggleCart()">
+🛒 <span id="contador">0</span>
+</div>
+
+<div id="cartPanel">
+
+<h2>Tu carrito</h2>
+
+<div id="cartItems"></div>
+
+<div id="cartTotal" class="cart-total"></div>
+
+<button class="btn-whatsapp" onclick="enviarWhatsApp()">
+Enviar pedido por WhatsApp
+</button>
+
+<button class="btn-clear" onclick="limpiarCarrito()">
+Limpiar carrito
+</button>
+
+<button class="btn-close" onclick="toggleCart()">
+Cerrar carrito
+</button>
+
+</div>
+
+<a href="https://wa.me/5493401415127?text=Hola,%20quiero%20consultar%20por%20los%20productos" class="whatsapp" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="30">
+</a>
+
+<script>
+
+let productos=[]
+let categorias={}
+let carrito=JSON.parse(localStorage.getItem("carrito"))||[]
+
+fetch("productos.json")
+.then(r=>r.json())
+.then(data=>{
+
+productos=data
+
+data.forEach(p=>{
+
+let cat=(p.category||"Otros").split(">")[0].trim()
+
+if(!categorias[cat]) categorias[cat]=[]
+
+categorias[cat].push(p)
+
+})
+
+crearCategorias()
+
+let categoriaGuardada = localStorage.getItem("categoriaActiva")
+
+if(categoriaGuardada && categorias[categoriaGuardada]){
+
+mostrarProductos(categorias[categoriaGuardada])
+
+setTimeout(()=>{
+document.querySelectorAll(".categorias button").forEach(btn=>{
+if(btn.innerText===categoriaGuardada){
+btn.classList.add("active")
+}
+})
+},50)
+
+}else{
+
+mostrarProductos(productos)
+
+}
+
+actualizarCarrito()
+
+})
+
+function crearCategorias(){
+
+let cont=document.getElementById("categorias")
+
+Object.keys(categorias).forEach(cat=>{
+
+let btn=document.createElement("button")
+btn.textContent=cat
+
+btn.onclick=()=>{
+
+document.querySelectorAll(".categorias button")
+.forEach(b=>b.classList.remove("active"))
+
+btn.classList.add("active")
+
+localStorage.setItem("categoriaActiva",cat)
+
+mostrarProductos(categorias[cat])
+
+}
+
+cont.appendChild(btn)
+
+})
+
+}
+
+function mostrarProductos(lista){
+
+let cont=document.getElementById("productos")
+
+let html=""
+
+lista.forEach(p=>{
+
+    let badgeHTML = ""
+
+if(Math.random() > 0.6){
+
+const badges = [
+{text:"OFERTA", class:"badge-oferta"},
+{text:"TOP", class:"badge-top"},
+{text:"NUEVO", class:"badge-nuevo"}
+]
+
+const elegido = badges[Math.floor(Math.random()*badges.length)]
+
+badgeHTML = `<div class="badge ${elegido.class}">${elegido.text}</div>`
+
+}
+
+html+=`
+
+<div class="card">
+
+${badgeHTML}
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}&categoria=${encodeURIComponent(p.category)}">
+
+<img src="${p.image}">
+</a>
+
+<h4>${p.name}</h4>
+
+<div class="price">${p.price}</div>
+
+${(() => {
+const mensajes = [
+"🔥 Alta demanda",
+"🚀 Producto popular",
+"💥 Oferta destacada",
+"⭐ Muy vendido",
+"📦 Stock disponible"
+]
+return Math.random() > 0.5 
+? `<p style="font-size:13px;color:#2563eb;font-weight:bold;">${mensajes[Math.floor(Math.random()*mensajes.length)]}</p>` 
+: ""
+})()}
+
+<button class="buy-btn"
+onclick="agregarCarrito('${p.name}','${p.price}', this)"
+data-text="🔥 Comprar ahora">
+🔥 Comprar ahora
+</button>
+
+
+</div>
+
+`
+
+})
+
+cont.innerHTML=html
+
+}
+
+
+
+function agregarCarrito(nombre,precio,btn){
+
+    mostrarToast("✔ Producto agregado al carrito")
+
+let prod=carrito.find(p=>p.name===nombre)
+
+if(prod) prod.cantidad++
+else carrito.push({name:nombre,price:precio,cantidad:1})
+
+actualizarCarrito()
+
+// 🔥 EFECTO VISUAL CORRECTO
+
+const textoOriginal = btn.getAttribute("data-text")
+
+btn.innerHTML="✔ Agregado"
+btn.style.background="#16a34a"
+
+setTimeout(()=>{
+btn.innerHTML=textoOriginal
+btn.style.background=""
+},1000)
+
+// 🔥 ANIMAR CARRITO
+const cartBtn = document.querySelector(".cart-button")
+cartBtn.classList.add("cart-animate")
+
+setTimeout(()=>{
+cartBtn.classList.remove("cart-animate")
+},400)
+
+}
+
+function limpiarCarrito(){
+carrito=[]
+actualizarCarrito()
+}
+
+function actualizarCarrito(){
+
+let total=0
+let cantidad=0
+
+let cont=document.getElementById("cartItems")
+cont.innerHTML=""
+
+carrito.forEach((p,i)=>{
+
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+
+total+=subtotal
+cantidad+=p.cantidad
+
+cont.innerHTML+=`
+
+<div class="cart-item">
+
+<b>${p.name}</b>
+
+<div>
+
+<button onclick="restarCantidad(${i})">➖</button>
+
+${p.cantidad}
+
+<button onclick="sumarCantidad(${i})">➕</button>
+
+<button onclick="eliminarProducto(${i})">🗑</button>
+
+</div>
+
+Subtotal: $${subtotal.toLocaleString()}
+
+</div>
+
+`
+
+})
+
+document.getElementById("contador").innerText=cantidad
+
+// 🔥 ANIMAR CONTADOR
+const contador = document.getElementById("contador")
+contador.classList.add("cart-bounce")
+
+setTimeout(()=>{
+contador.classList.remove("cart-bounce")
+},200)
+
+document.getElementById("cartTotal").innerHTML=
+"Total: $"+total.toLocaleString()
+
+localStorage.setItem("carrito",JSON.stringify(carrito))
+
+}
+
+function sumarCantidad(i){
+
+carrito[i].cantidad++
+
+actualizarCarrito()
+
+}
+
+function restarCantidad(i){
+
+carrito[i].cantidad--
+
+if(carrito[i].cantidad<=0){
+
+carrito.splice(i,1)
+
+}
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(i){
+
+carrito.splice(i,1)
+
+actualizarCarrito()
+
+}  
+
+function toggleCart(){
+document.getElementById("cartPanel").classList.toggle("open")
+}
+
+
+function enviarWhatsApp(){
+
+let mensaje="🛒 *Nuevo pedido*:%0A%0A"
+
+let total=0
+
+carrito.forEach(p=>{
+
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+total+=subtotal
+
+mensaje+=`• ${p.cantidad} x ${p.name}%0A`
+mensaje+=`💰 Precio: ${p.price}%0A`
+mensaje+=`Subtotal: $${subtotal.toLocaleString()}%0A%0A`
+
+})
+
+mensaje+=`💵 *TOTAL: $${total.toLocaleString()}*%0A%0A`
+mensaje+=`📦 Envío a: (completar)%0A`
+mensaje+=`💳 Forma de pago: (transferencia / efectivo)%0A%0A`
+mensaje+=`Gracias!`
+
+window.open(`https://wa.me/5493401415127?text=${mensaje}`)
+
+}
+
+// BUSQUEDA + ORDENAMIENTO
+
+function aplicarFiltros(){
+
+let texto = document.getElementById("search").value.toLowerCase()
+let orden = document.getElementById("sort").value
+
+let categoriaActiva = localStorage.getItem("categoriaActiva")
+
+let lista = categoriaActiva && categorias[categoriaActiva]
+? [...categorias[categoriaActiva]]
+: [...productos]
+
+// FILTRO BUSQUEDA
+
+if(texto){
+
+lista = lista.filter(p =>
+p.name.toLowerCase().includes(texto)
+)
+
+}
+
+// ORDENAMIENTO
+
+function precioNumero(p){
+return parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+}
+
+if(orden==="az"){
+lista.sort((a,b)=>a.name.localeCompare(b.name))
+}
+
+if(orden==="za"){
+lista.sort((a,b)=>b.name.localeCompare(a.name))
+}
+
+if(orden==="menor"){
+lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
+}
+
+if(orden==="mayor"){
+lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
+}
+
+mostrarProductos(lista)
+
+}
+
+// EVENTOS
+
+document.getElementById("search").addEventListener("input",aplicarFiltros)
+document.getElementById("sort").addEventListener("change",aplicarFiltros)   
+
+
+function mostrarToast(mensaje){
+
+const toast = document.getElementById("toast")
+
+toast.innerText = mensaje
+toast.classList.add("show")
+
+setTimeout(()=>{
+toast.classList.remove("show")
+},2000)
+
+}
+
+
+
+</script>
+
+<div id="toast" class="toast"></div>
+
+</body>
+</html>

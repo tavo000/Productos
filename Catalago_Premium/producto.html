@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Producto</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+img{
+width:100%;
+}
+
+.price{
+color:#16a34a;
+font-size:28px;
+font-weight:bold;
+}
+
+.buy{
+display:inline-block;
+margin-top:20px;
+padding:14px 20px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-size:18px;
+}
+
+.btn-volver{
+margin:20px;
+padding:10px 16px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img id="imagen">
+
+<div>
+
+<h2 id="nombre"></h2>
+
+<p class="price" id="precio"></p>
+
+<p id="descripcion"></p>
+
+<a id="whatsapp" class="buy" target="_blank">
+💬 Comprar ahora por WhatsApp
+</a>
+
+</div>
+
+</div>
+
+<button onclick="window.location.href='index.html'" class="btn-volver">
+← Volver al catálogo
+</button>
+
+<script>
+
+const params=new URLSearchParams(window.location.search)
+
+const nombreProducto=params.get("nombre")
+
+fetch("productos.json")
+.then(r=>r.json())
+.then(data=>{
+
+const producto=data.find(p=>p.name===nombreProducto)
+
+if(producto){
+
+document.getElementById("nombre").innerText=producto.name
+document.getElementById("precio").innerText=producto.price
+document.getElementById("imagen").src=producto.image
+
+document.getElementById("descripcion").innerText=
+"✔ Producto de alta calidad\n✔ Stock disponible\n✔ Envíos a todo el país\n✔ Compra segura por WhatsApp";
+
+document.getElementById("whatsapp").href=
+`https://wa.me/5493401415127?text=Hola,%20quiero%20comprar%20${encodeURIComponent(producto.name)}`
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
