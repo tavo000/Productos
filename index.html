@@ -940,48 +940,40 @@ cont.innerHTML=html
 
 
 
-function agregarCarrito(nombre, precio, boton){
+function agregarCarrito(nombre, precio, btn){
 
-    // tu lógica actual del carrito (NO tocar)
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    carrito.push({nombre, precio});
+
+    carrito.push({
+        name: nombre,
+        price: precio,
+        cantidad: 1
+    });
+
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    // 🔥 feedback visual
-    const textoOriginal = boton.innerText;
+    actualizarCarrito();
 
-    boton.innerText = "✔ Agregado";
-    boton.style.background = "#4caf50";
+    // 🔥 EFECTO VISUAL CORRECTO
+    const textoOriginal = btn.getAttribute("data-text");
 
-    setTimeout(() => {
-        boton.innerText = "🛒 Agregar al carrito";
-        boton.style.background = "#1e88e5";
-    }, 1500);
+    btn.innerHTML = "✔ Agregado";
+    btn.style.background = "#16a34a";
+
+    setTimeout(()=>{
+        btn.innerHTML = textoOriginal;
+        btn.style.background = "";
+    },1000);
+
+    // 🔥 ANIMAR CARRITO
+    const cartBtn = document.querySelector(".cart-button");
+    cartBtn.classList.add("cart-animate");
+
+    setTimeout(()=>{
+        cartBtn.classList.remove("cart-animate");
+    },400);
 }
 
-actualizarCarrito()
-
-// 🔥 EFECTO VISUAL CORRECTO
-
-const textoOriginal = btn.getAttribute("data-text")
-
-btn.innerHTML="✔ Agregado"
-btn.style.background="#16a34a"
-
-setTimeout(()=>{
-btn.innerHTML=textoOriginal
-btn.style.background=""
-},1000)
-
-// 🔥 ANIMAR CARRITO
-const cartBtn = document.querySelector(".cart-button")
-cartBtn.classList.add("cart-animate")
-
-setTimeout(()=>{
-cartBtn.classList.remove("cart-animate")
-},400)
-
-}
 
 function limpiarCarrito(){
 carrito=[]
@@ -1028,7 +1020,6 @@ ${p.cantidad}
 Subtotal: $${subtotal.toLocaleString()}
 
 </div>
-
 `
 
 })
