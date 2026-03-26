@@ -955,7 +955,7 @@ function agregarCarrito(nombre, precio, btn){
     actualizarCarrito();
 
     // 🔥 EFECTO VISUAL CORRECTO
-    const textoOriginal = btn.getAttribute("data-text");
+    const textoOriginal = btn.innerHTML
 
     btn.innerHTML = "✔ Agregado";
     btn.style.background = "#16a34a";
