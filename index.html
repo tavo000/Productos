@@ -142,12 +142,13 @@ margin:10px 0;
 background: linear-gradient(135deg,#2563eb,#1d4ed8);
 color:white;
 border:none;
-padding:10px;
+padding: 14px;px;
 border-radius:8px;
 cursor:pointer;
 width:100%;
 font-weight:bold;
 transition:0.2s;
+font-size: 16px;
 }
 
 .buy-btn:hover{
@@ -939,14 +940,24 @@ cont.innerHTML=html
 
 
 
-function agregarCarrito(nombre,precio,btn){
+function agregarCarrito(nombre, precio, boton){
 
-    mostrarToast("✔ Producto agregado al carrito")
+    // tu lógica actual del carrito (NO tocar)
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    carrito.push({nombre, precio});
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
-let prod=carrito.find(p=>p.name===nombre)
+    // 🔥 feedback visual
+    const textoOriginal = boton.innerText;
 
-if(prod) prod.cantidad++
-else carrito.push({name:nombre,price:precio,cantidad:1})
+    boton.innerText = "✔ Agregado";
+    boton.style.background = "#4caf50";
+
+    setTimeout(() => {
+        boton.innerText = "🛒 Agregar al carrito";
+        boton.style.background = "#1e88e5";
+    }, 1500);
+}
 
 actualizarCarrito()
 
