@@ -959,7 +959,11 @@ function agregarCarrito(nombre, precio, btn){
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     actualizarCarrito();
-    toggleCart();
+    const cart = document.getElementById("cartPanel");
+
+if(!cart.classList.contains("open")){
+    cart.classList.add("open");
+}
     mostrarToast("Producto agregado al carrito");
 
     // 🔥 feedback visual
