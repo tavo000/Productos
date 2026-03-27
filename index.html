@@ -769,7 +769,7 @@ background:#16a34a;
 <div id="cartTotal" class="cart-total"></div>
 
 <button class="btn-whatsapp" onclick="enviarWhatsApp()">
-Enviar pedido por WhatsApp
+💬 Finalizar compra por WhatsApp
 </button>
 
 <button class="btn-clear" onclick="limpiarCarrito()">
@@ -959,6 +959,8 @@ function agregarCarrito(nombre, precio, btn){
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     actualizarCarrito();
+    toggleCart();
+    mostrarToast("Producto agregado al carrito");
 
     // 🔥 feedback visual
     const textoOriginal = btn.innerHTML;
@@ -1023,7 +1025,7 @@ ${p.cantidad}
 
 </div>
 
-Subtotal: $${subtotal.toLocaleString()}
+💲 ${p.price} x ${p.cantidad} = $${subtotal.toLocaleString()}
 
 </div>
 `
@@ -1084,7 +1086,7 @@ document.getElementById("cartPanel").classList.toggle("open")
 
 function enviarWhatsApp(){
 
-let mensaje="🛒 *Nuevo pedido*:%0A%0A"
+mensaje+="🛒 *Pedido desde catálogo online*%0A%0A"
 
 let total=0
 
@@ -1106,7 +1108,7 @@ mensaje+=`Subtotal: $${subtotal.toLocaleString()}%0A%0A`
 mensaje+=`💵 *TOTAL: $${total.toLocaleString()}*%0A%0A`
 mensaje+=`📦 Envío a: (completar)%0A`
 mensaje+=`💳 Forma de pago: (transferencia / efectivo)%0A%0A`
-mensaje+=`Gracias!`
+mensaje+=`Gracias!%0A🚀 Enviado desde la tienda online`
 
 window.open(`https://wa.me/5493401415127?text=${mensaje}`)
 
