@@ -944,18 +944,25 @@ function agregarCarrito(nombre, precio, btn){
 
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-    carrito.push({
-        name: nombre,
-        price: precio,
-        cantidad: 1
-    });
+    // 🔍 buscar si ya existe
+    let productoExistente = carrito.find(p => p.name === nombre);
+
+    if(productoExistente){
+        productoExistente.cantidad++;
+    } else {
+        carrito.push({
+            name: nombre,
+            price: precio,
+            cantidad: 1
+        });
+    }
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     actualizarCarrito();
 
-    // 🔥 EFECTO VISUAL CORRECTO
-    const textoOriginal = btn.innerHTML
+    // 🔥 feedback visual
+    const textoOriginal = btn.innerHTML;
 
     btn.innerHTML = "✔ Agregado";
     btn.style.background = "#16a34a";
@@ -965,7 +972,7 @@ function agregarCarrito(nombre, precio, btn){
         btn.style.background = "";
     },1000);
 
-    // 🔥 ANIMAR CARRITO
+    // animación carrito
     const cartBtn = document.querySelector(".cart-button");
     cartBtn.classList.add("cart-animate");
 
