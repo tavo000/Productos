@@ -142,7 +142,7 @@ margin:10px 0;
 background: linear-gradient(135deg,#2563eb,#1d4ed8);
 color:white;
 border:none;
-padding: 14px;px;
+padding: 14px;
 border-radius:8px;
 cursor:pointer;
 width:100%;
@@ -942,7 +942,6 @@ cont.innerHTML=html
 
 function agregarCarrito(nombre, precio, btn){
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     // 🔍 buscar si ya existe
     let productoExistente = carrito.find(p => p.name === nombre);
