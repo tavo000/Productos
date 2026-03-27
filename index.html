@@ -959,23 +959,19 @@ function agregarCarrito(nombre, precio, btn){
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     actualizarCarrito();
-    const cart = document.getElementById("cartPanel");
+   // 🔥 abrir carrito automáticamente
+const cart = document.getElementById("cartPanel");
 
 if(!cart.classList.contains("open")){
     cart.classList.add("open");
-}
-    mostrarToast("Producto agregado al carrito");
-
-    // 🔥 feedback visual
-    const textoOriginal = btn.innerHTML;
-
-    btn.innerHTML = "✔ Agregado";
-    btn.style.background = "#16a34a";
 
     setTimeout(()=>{
-        btn.innerHTML = textoOriginal;
-        btn.style.background = "";
-    },1000);
+        cart.classList.remove("open");
+    },2000);
+}
+
+// 🔔 notificación
+mostrarToast("Producto agregado al carrito");
 
     // animación carrito
     const cartBtn = document.querySelector(".cart-button");
