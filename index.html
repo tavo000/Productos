@@ -628,20 +628,42 @@ background:#16a34a;
 position:fixed;
 right:20px;
 bottom:160px;
-background:#111827;
+background: linear-gradient(135deg,#2563eb,#1d4ed8);
 color:white;
-width:50px;
-height:50px;
+width:52px;
+height:52px;
 border:none;
 border-radius:50%;
 cursor:pointer;
-font-size:20px;
+font-size:22px;
 display:none;
 align-items:center;
 justify-content:center;
-box-shadow:0 6px 15px rgba(0,0,0,0.3);
+box-shadow:0 8px 20px rgba(37,99,235,0.4);
 z-index:9999;
-transition:0.3s;
+transition:all 0.3s ease;
+}
+
+/* hover */
+.btn-top:hover{
+transform:scale(1.15);
+box-shadow:0 10px 25px rgba(37,99,235,0.6);
+}
+
+/* efecto al aparecer */
+.btn-top.show{
+animation:fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 .btn-top:hover{
@@ -1239,15 +1261,17 @@ window.addEventListener("scroll", function(){
 
     if(window.scrollY > 300){
         btn.style.display = "flex";
+btn.classList.add("show");
     } else {
-        btn.style.display = "none";
+        btn.classList.remove("show");
+btn.style.display = "none";
+}
     }
-
-});
+        );
 
 </script>
 
-<button class="btn-top" onclick="volverArriba()"></button>
+<button class="btn-top" onclick="volverArriba()">⬆️</button>
 
 <div id="toast" class="toast"></div>
 
