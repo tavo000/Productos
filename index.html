@@ -29,7 +29,7 @@ margin-top:45px;
 .container{
 max-width:1200px;
 margin:auto;
-padding:15px;
+padding:20px;
 }
 
 /* BUSCADOR */
@@ -42,13 +42,18 @@ margin-bottom:25px;
 flex-wrap:wrap;
 }
 
-#search, #sort{
+#search{
+width:60%;
 padding:14px;
 border-radius:10px;
 border:1px solid #ccc;
 }
 
-#search{ width:60%; }
+#sort{
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+}
 
 /* CATEGORIAS */
 
@@ -74,7 +79,7 @@ background:#2563eb;
 color:white;
 }
 
-/* GRID */
+/* GRID PRODUCTOS */
 
 .grid{
 display:grid;
@@ -82,7 +87,17 @@ grid-template-columns: repeat(3, 1fr);
 gap:20px;
 }
 
-/* CARD */
+/* TARJETA */
+
+/*.barra-confianza{
+background:white;
+border-radius:12px;
+padding:18px;
+text-align:center;
+box-shadow:0 6px 15px rgba(0,0,0,0.08);
+transition:0.2s;
+cursor:pointer;
+}*/
 
 .card{
 background:white;
@@ -91,8 +106,6 @@ padding:18px;
 text-align:center;
 box-shadow:0 8px 20px rgba(0,0,0,0.08);
 position:relative;
-margin-bottom:20px;
-transition:0.3s;
 }
 
 .card:hover{
@@ -105,15 +118,8 @@ height:140px;
 object-fit:contain;
 }
 
-.card:hover img{
-transform:scale(1.05);
-transition:0.3s;
-}
-
 .card h4{
-font-size:13px;
-font-weight:500;
-color:#374151;
+font-size:15px;
 margin:10px 0;
 min-height:40px;
 }
@@ -133,18 +139,29 @@ margin:10px 0;
 background: linear-gradient(135deg,#2563eb,#1d4ed8);
 color:white;
 border:none;
-padding:14px;
+padding: 14px;
 border-radius:8px;
 cursor:pointer;
 width:100%;
 font-weight:bold;
-font-size:13px;
 transition:0.2s;
+font-size: 16px;
 }
 
 .buy-btn:hover{
 transform:scale(1.03);
 box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+.buy-now{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+margin-top:6px;
+width:100%;
 }
 
 /* CARRITO */
@@ -173,6 +190,10 @@ padding:4px 9px;
 border-radius:12px;
 margin-left:6px;
 font-weight:bold;
+}
+
+.cart-bounce {
+transform: scale(1.4);
 }
 
 #cartPanel{
@@ -207,12 +228,402 @@ align-items:center;
 justify-content:center;
 }
 
-/* BOTÓN VOLVER ARRIBA */
+.btn-whatsapp{
+background:#25D366;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-clear{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}
+
+.btn-close{
+background:#e5e7eb;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}  
+
+/* BANNER ENVIO */
+
+.envio-banner{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#16a34a;
+color:white;
+text-align:center;
+padding:10px;
+font-weight:bold;
+z-index:9999;
+}
+
+/* PAGOS */
+
+/* ---------- BLOQUE PAGOS Y ENVÍOS ---------- */
+
+.pagos{
+
+background:linear-gradient(180deg,#ffffff,#f9fafb);
+
+padding:30px;
+
+margin:30px auto;
+
+max-width:1200px;
+
+border-radius:14px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
+text-align:center;
+
+border:1px solid #e5e7eb;
+
+}
+
+/* TITULOS */
+
+.pagos h3{
+
+font-size:18px;
+
+color:#111827;
+
+margin-bottom:15px;
+
+font-weight:700;
+
+}
+
+/* SEPARADOR */
+
+.pagos hr{
+
+border:none;
+
+border-top:1px solid #e5e7eb;
+
+margin:25px 0;
+
+}
+
+/* CONTENEDORES */
+
+.pagos-logos,
+.envios-logos{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+margin-top:10px;
+
+}
+
+/* ICONOS */
+
+.pagos img,
+.envios-logos img{
+
+height:40px;
+
+object-fit:contain;
+
+padding:6px;
+
+background:white;
+
+border-radius:8px;
+
+border:1px solid #e5e7eb;
+
+box-shadow:0 3px 8px rgba(0,0,0,0.05);
+
+transition:0.25s;
+
+}
+
+/* HOVER ICONOS */
+
+.pagos img:hover,
+.envios-logos img:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 6px 16px rgba(0,0,0,0.12);
+
+}
+
+/* TEXTOS */
+
+.pagos span,
+.envios-logos span{
+
+font-size:14px;
+
+color:#374151;
+
+font-weight:500;
+
+margin-right:10px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.pagos{
+
+padding:20px;
+
+}
+
+.pagos-logos,
+.envios-logos{
+
+gap:15px;
+
+}
+
+.pagos img,
+.envios-logos img{
+
+height:34px;
+
+}
+
+}
+
+/* BARRA DE CONFIANZA */
+
+.barra-confianza{
+
+background:white;
+
+border-top:1px solid #e5e7eb;
+border-bottom:1px solid #e5e7eb;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+gap:40px;
+
+padding:14px 10px;
+
+flex-wrap:wrap;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+
+}
+
+/* ITEMS */
+
+.confianza-item{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+font-weight:500;
+
+color:#374151;
+
+}
+
+/* ICONOS */
+
+.confianza-item span{
+
+font-size:18px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.barra-confianza{
+
+gap:18px;
+
+padding:12px 6px;
+
+}
+
+.confianza-item{
+
+font-size:13px;
+
+}
+
+.confianza-item span{
+
+font-size:16px;
+
+}
+
+} 
+
+@keyframes bounceCart {
+0% { transform: scale(1); }
+30% { transform: scale(1.3); }
+60% { transform: scale(0.9); }
+100% { transform: scale(1); }
+}
+
+.cart-animate {
+animation: bounceCart 0.4s ease;
+}
+
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:#111827;
+color:white;
+padding:14px 22px;
+border-radius:10px;
+font-size:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+opacity:0;
+transition:all 0.4s ease;
+z-index:9999;
+}
+
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+color:white;
+z-index:2;
+}
+
+.badge-oferta{
+background:#ef4444;
+}
+
+.badge-top{
+background:#2563eb;
+}
+
+.badge-nuevo{
+background:#16a34a;
+}
+
+.container{
+    padding: 15px;
+}
+
+.card{
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.card button{
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* MOBILE FIRST */
+@media (max-width: 768px){
+
+    .container{
+        padding: 10px;
+    }
+
+    .card{
+        margin-bottom: 20px;
+        border-radius: 14px;
+        padding: 12px;
+    }
+
+    .card img{
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .card h3{
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .price{
+        font-size: 18px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-bottom: 10px;
+    }
+
+    .card button{
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 10px;
+        background: #1e88e5;
+        color: white;
+        border: none;
+    }
+
+    .search-bar{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #search{
+        width: 100%;
+    }
+
+    #sort{
+        width: 100%;
+    }
+}
 
 .btn-top{
 position:fixed;
 right:20px;
-bottom:170px;
+bottom:140px;
 background: linear-gradient(135deg,#2563eb,#1d4ed8);
 color:white;
 width:54px;
@@ -232,140 +643,83 @@ transform:translateY(20px) scale(0.9);
 transition:all 0.35s ease;
 }
 
+/* estado visible */
 .btn-top.show{
 opacity:1;
 pointer-events:auto;
 transform:translateY(0) scale(1);
-animation:fadeUp 0.4s ease;
 }
 
+/* hover premium */
 .btn-top:hover{
 transform:translateY(-4px) scale(1.12);
 box-shadow:0 15px 40px rgba(37,99,235,0.6);
 }
 
-@keyframes fadeUp{
-from{ opacity:0; transform:translateY(20px); }
-to{ opacity:1; transform:translateY(0); }
+/* click efecto */
+.btn-top:active{
+transform:scale(0.95);
 }
 
-/* TOAST */
-
-.toast{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%) translateY(100px);
-background:#111827;
-color:white;
-padding:14px 22px;
-border-radius:10px;
-font-size:14px;
-opacity:0;
-transition:all 0.4s ease;
-z-index:9999;
-}
-
-.toast.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
-}
-
-/* BADGES */
-
-.badge{
+/* pulso suave constante */
+.btn-top::after{
+content:"";
 position:absolute;
-top:10px;
-left:10px;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
-color:white;
+width:100%;
+height:100%;
+border-radius:50%;
+background:rgba(37,99,235,0.35);
+z-index:-1;
+animation:pulse 2.5s infinite;
 }
 
-.badge-oferta{ background:#ef4444; }
-.badge-top{ background:#2563eb; }
-.badge-nuevo{ background:#16a34a; }
+/* animación pulso */
+@keyframes pulse{
+0%{
+transform:scale(1);
+opacity:0.7;
+}
+70%{
+transform:scale(1.6);
+opacity:0;
+}
+100%{
+opacity:0;
+}}
 
-/* ✅ LOGOS ENVÍOS (CORREGIDO) */
-
-.envios-logos{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:20px;
-margin-top:15px;
+/* hover */
+.btn-top:hover{
+transform:scale(1.15);
+box-shadow:0 10px 25px rgba(37,99,235,0.6);
 }
 
-.envios-logos div{
-display:flex;
-flex-direction:column;
-align-items:center;
-width:90px;
+/* efecto al aparecer */
+.btn-top.show{
+animation:fadeUp 0.4s ease;
 }
 
-.envios-logos img{
-width:60px;
-height:60px;
-object-fit:contain;
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-.envios-logos p{
-font-size:12px;
-margin-top:5px;
-color:#374151;
+.btn-top:hover{
+transform:scale(1.1);
+background:#2563eb;
 }
-
-/* MOBILE */
 
 @media (max-width:768px){
-
-.container{ padding:10px; }
 
 .grid{
 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
-
-.card{
-padding:12px;
-border-radius:14px;
 }
-
-.card img{
-width:100%;
-height:auto;
-}
-
-.card h4{
-font-size:14px;
-}
-
-.price{
-font-size:20px;
-font-weight:700;
-}
-
-.search-bar{
-flex-direction:column;
-gap:10px;
-}
-
-#search, #sort{
-width:100%;
-}
-
-.envios-logos div{
-width:70px;
-}
-
-.envios-logos img{
-width:50px;
-height:50px;
-}
-
-}
-
 
 </style>
 </head>
@@ -670,7 +1024,6 @@ onclick="agregarCarrito('${p.name}', '${p.price}', this)">
 
 </div>
 
-
 </div>
 
 `
@@ -682,9 +1035,7 @@ cont.innerHTML=html
 }
 
 
-
 function agregarCarrito(nombre, precio, btn){
-
 
     // 🔍 buscar si ya existe
     let productoExistente = carrito.find(p => p.name === nombre);
@@ -724,7 +1075,6 @@ mostrarToast("Producto agregado al carrito");
         cartBtn.classList.remove("cart-animate");
     },400);
 }
-
 
 function limpiarCarrito(){
 carrito=[]
@@ -826,7 +1176,6 @@ function toggleCart(){
 document.getElementById("cartPanel").classList.toggle("open")
 }
 
-
 function enviarWhatsApp(){
 
 mensaje+="🛒 *Pedido desde catálogo online*%0A%0A"
@@ -912,7 +1261,6 @@ mostrarProductos(lista)
 
 document.getElementById("search").addEventListener("input",aplicarFiltros)
 document.getElementById("sort").addEventListener("change",aplicarFiltros)   
-
 
 function mostrarToast(mensaje){
 
