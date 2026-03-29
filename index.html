@@ -42,18 +42,13 @@ margin-bottom:25px;
 flex-wrap:wrap;
 }
 
-#search{
-width:60%;
+#search, #sort{
 padding:14px;
 border-radius:10px;
 border:1px solid #ccc;
 }
 
-#sort{
-padding:14px;
-border-radius:10px;
-border:1px solid #ccc;
-}
+#search{ width:60%; }
 
 /* CATEGORIAS */
 
@@ -79,7 +74,7 @@ background:#2563eb;
 color:white;
 }
 
-/* GRID PRODUCTOS */
+/* GRID */
 
 .grid{
 display:grid;
@@ -87,7 +82,7 @@ grid-template-columns: repeat(3, 1fr);
 gap:20px;
 }
 
-/* TARJETA */
+/* CARD */
 
 .card{
 background:white;
@@ -105,14 +100,14 @@ transform:translateY(-5px);
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
-.card:hover img{
-transform:scale(1.05);
-transition:0.3s;
-}
-
 .card img{
 height:140px;
 object-fit:contain;
+}
+
+.card:hover img{
+transform:scale(1.05);
+transition:0.3s;
 }
 
 .card h4{
@@ -143,9 +138,8 @@ border-radius:8px;
 cursor:pointer;
 width:100%;
 font-weight:bold;
-transition:0.2s;
 font-size:13px;
-opacity:0.9;
+transition:0.2s;
 }
 
 .buy-btn:hover{
@@ -181,10 +175,6 @@ margin-left:6px;
 font-weight:bold;
 }
 
-.cart-bounce {
-transform: scale(1.4);
-}
-
 #cartPanel{
 position:fixed;
 top:0;
@@ -217,86 +207,12 @@ align-items:center;
 justify-content:center;
 }
 
-.btn-whatsapp{
-background:#22c55e;
-color:white;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:15px;
-font-weight:600;
-cursor:pointer;
-}
-
-.btn-clear{
-background:#ef4444;
-color:white;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:10px;
-cursor:pointer;
-}
-
-.btn-close{
-background:#e5e7eb;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:10px;
-cursor:pointer;
-}
-
-/* TOAST */
-
-.toast{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%) translateY(100px);
-background:#111827;
-color:white;
-padding:14px 22px;
-border-radius:10px;
-font-size:14px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
-opacity:0;
-transition:all 0.4s ease;
-z-index:9999;
-}
-
-.toast.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
-}
-
-/* BADGES */
-
-.badge{
-position:absolute;
-top:10px;
-left:10px;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
-color:white;
-z-index:2;
-}
-
-.badge-oferta{ background:#ef4444; }
-.badge-top{ background:#2563eb; }
-.badge-nuevo{ background:#16a34a; }
-
-/* BOTÓN SCROLL PREMIUM */
+/* BOTÓN VOLVER ARRIBA */
 
 .btn-top{
 position:fixed;
 right:20px;
-bottom:140px;
+bottom:170px;
 background: linear-gradient(135deg,#2563eb,#1d4ed8);
 color:white;
 width:54px;
@@ -328,70 +244,84 @@ transform:translateY(-4px) scale(1.12);
 box-shadow:0 15px 40px rgba(37,99,235,0.6);
 }
 
-.btn-top:active{
-transform:scale(0.95);
-}
-
-.btn-top::after{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-border-radius:50%;
-background:rgba(37,99,235,0.35);
-z-index:-1;
-animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-0%{ transform:scale(1); opacity:0.7; }
-70%{ transform:scale(1.6); opacity:0; }
-100%{ opacity:0; }
-}
-
 @keyframes fadeUp{
 from{ opacity:0; transform:translateY(20px); }
 to{ opacity:1; transform:translateY(0); }
 }
 
-/* LOGOS PAGOS Y ENVÍOS */
+/* TOAST */
 
-.pagos-logos,
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:#111827;
+color:white;
+padding:14px 22px;
+border-radius:10px;
+font-size:14px;
+opacity:0;
+transition:all 0.4s ease;
+z-index:9999;
+}
+
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+/* BADGES */
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+color:white;
+}
+
+.badge-oferta{ background:#ef4444; }
+.badge-top{ background:#2563eb; }
+.badge-nuevo{ background:#16a34a; }
+
+/* ✅ LOGOS ENVÍOS (CORREGIDO) */
+
 .envios-logos{
 display:flex;
 justify-content:center;
-align-items:center;
 flex-wrap:wrap;
-gap:25px;
-margin-top:10px;
+gap:20px;
+margin-top:15px;
 }
 
-.pagos-logos img,
+.envios-logos div{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:90px;
+}
+
 .envios-logos img{
-height:40px;
-max-width:120px;
+width:60px;
+height:60px;
 object-fit:contain;
-padding:6px;
-background:white;
-border-radius:8px;
-border:1px solid #e5e7eb;
-box-shadow:0 3px 8px rgba(0,0,0,0.05);
-transition:0.25s;
 }
 
-.pagos-logos img:hover,
-.envios-logos img:hover{
-transform:scale(1.08);
-box-shadow:0 6px 16px rgba(0,0,0,0.12);
+.envios-logos p{
+font-size:12px;
+margin-top:5px;
+color:#374151;
 }
 
 /* MOBILE */
 
 @media (max-width:768px){
 
-.container{
-padding:10px;
-}
+.container{ padding:10px; }
 
 .grid{
 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -405,7 +335,6 @@ border-radius:14px;
 .card img{
 width:100%;
 height:auto;
-border-radius:10px;
 }
 
 .card h4{
@@ -422,14 +351,17 @@ flex-direction:column;
 gap:10px;
 }
 
-#search,
-#sort{
+#search, #sort{
 width:100%;
 }
 
-.pagos-logos img,
+.envios-logos div{
+width:70px;
+}
+
 .envios-logos img{
-height:34px;
+width:50px;
+height:50px;
 }
 
 }
