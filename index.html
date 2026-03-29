@@ -113,6 +113,10 @@ transform:translateY(-5px);
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
+.card:hover img{
+transform:scale(1.05);
+transition:0.3s;
+}
 
 .card img{
 height:140px;
@@ -120,7 +124,9 @@ object-fit:contain;
 }
 
 .card h4{
-font-size:15px;
+font-size:13px;
+font-weight:500;
+color:#374151;
 margin:10px 0;
 min-height:40px;
 }
@@ -146,7 +152,8 @@ cursor:pointer;
 width:100%;
 font-weight:bold;
 transition:0.2s;
-font-size: 16px;
+font-size: 13px;
+opacity: 0.9;
 }
 
 .buy-btn:hover{
@@ -231,14 +238,14 @@ justify-content:center;
 }
 
 .btn-whatsapp{
-background:#25D366;
+background:#22c55e;
 color:white;
 border:none;
 padding:12px;
 border-radius:8px;
 width:100%;
 margin-top:15px;
-font-weight:bold;
+font-weight:600;
 cursor:pointer;
 }
 
@@ -592,10 +599,9 @@ background:#16a34a;
     }
 
     .price{
-        font-size: 18px;
-        font-weight: bold;
-        color: #2e7d32;
-        margin-bottom: 10px;
+    font-size:20px;
+    font-weight:700;
+    color:#16a34a;
     }
 
     .card button{
@@ -720,6 +726,8 @@ background:#2563eb;
 
 .grid{
 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
 }
 
 
