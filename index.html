@@ -347,25 +347,24 @@ margin-top:10px;
 
 /* ICONOS */
 
-.pagos img,
-.envios-logos img{
-
+/* PAGOS */
+.pagos-logos img{
 height:40px;
-
+width:auto;
 object-fit:contain;
-
 padding:6px;
-
 background:white;
-
 border-radius:8px;
-
 border:1px solid #e5e7eb;
-
 box-shadow:0 3px 8px rgba(0,0,0,0.05);
-
 transition:0.25s;
+}
 
+/* ENVIOS */
+.envios-logos img{
+width:60px;
+height:60px;
+object-fit:contain;
 }
 
 /* HOVER ICONOS */
@@ -1178,7 +1177,7 @@ document.getElementById("cartPanel").classList.toggle("open")
 
 function enviarWhatsApp(){
 
-mensaje+="🛒 *Pedido desde catálogo online*%0A%0A"
+let mensaje = "🛒 *Pedido desde catálogo online*%0A%0A"
 
 let total=0
 
